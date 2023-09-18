@@ -9,7 +9,9 @@ import Swal from 'sweetalert2';
 
 const OperationList = () => {
 
+  const [info, setInfo] = useState([]);
   const [datos, setDatos] = useState([]);
+
 
   const {user,isAuth} = useUserStore()
   const router = useRouter();
@@ -35,14 +37,30 @@ const OperationList = () => {
   const ListaPrestamo = async () =>{
     try {
       const headers = { key: user.token }
+      const array = []
       const solicitud = await axios.get('http://localhost:8080/prestamo/'+ user.idUsuario,{headers}); 
       setDatos(solicitud.data.prestamo.map(prestamo => prestamo));
+    
     } catch (error) {
-      Swal.fire(
-        {icon: 'error',
-        title: 'Oops...',
-        text: error.response.data.msg,}
-      )
+      console.log(error)
+      const msgerros = error.response.data.errors
+      if(msgerros){
+        const msg = msgerros.reduce((total, msgerro) => {
+          return total + msgerro.msg + "<br></br>";
+        },'');
+  
+        Swal.fire(
+          {icon: 'error',
+          title: 'Oops...',
+          html: msg,}
+        )
+      }else{
+        Swal.fire(
+          {icon: 'error',
+          title: 'Oops...',
+          text: error.response.data.msg}
+        )
+      } 
     }
  }
 
@@ -79,6 +97,17 @@ const OperationList = () => {
   }
  }
 
+ const obtPrestatario = async (idPrestamo) => {
+  try {
+    const headers = { key: user.token }
+     const usuario = await axios.get('http://localhost:8080/prestamo/prestatario/'+ idPrestamo,{headers}); 
+     return usuario
+  } catch (error) {
+
+ console.log(error)
+
+  }
+ }
 
 return (
     <Container>
@@ -101,6 +130,7 @@ return (
             <TableRow>
               <TableCell>Prestamo ID</TableCell>
               <TableCell>Estado del Prestamo</TableCell>
+              <TableCell>Descrip del Prestatario</TableCell>
               <TableCell>Tasa de Interés</TableCell>
               <TableCell>Abonado</TableCell>
               <TableCell>Monto Sin Interés</TableCell>
@@ -115,6 +145,7 @@ return (
               <TableRow key={data.idPrestamo}>
                 <TableCell>{data.idPrestamo}</TableCell>
                 <TableCell>{data.estadoPrestamo}</TableCell>
+                <TableCell>{data.descrip2}</TableCell>
                 <TableCell>{data.tasaInteres}%</TableCell>
                 <TableCell>{data.abonado}$</TableCell>
                 <TableCell>{data.montoTotal}$</TableCell>

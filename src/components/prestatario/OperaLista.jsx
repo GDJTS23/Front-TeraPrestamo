@@ -128,6 +128,7 @@ return (
             <TableRow>
               <TableCell>Préstamo ID</TableCell>
               <TableCell>Estado</TableCell>
+              <TableCell>Descrip del Prestamista</TableCell>
               <TableCell>Monto del Prétamo</TableCell>
               <TableCell>Tasa de Interés</TableCell>
               <TableCell>Deuda Total</TableCell>
@@ -141,6 +142,7 @@ return (
               <TableRow key={datos.idPrestamo}>
                 <TableCell>{datos.idPrestamo}</TableCell>
                 <TableCell>{datos.estadoPrestamo}</TableCell>
+                <TableCell>{datos.descrip1}</TableCell>
                 <TableCell>{datos.montoTotal}$</TableCell>
                 <TableCell>{datos.tasaInteres}%</TableCell>
                 <TableCell>{(datos.montoTotal*(datos.tasaInteres/100))+datos.montoTotal}$</TableCell>
