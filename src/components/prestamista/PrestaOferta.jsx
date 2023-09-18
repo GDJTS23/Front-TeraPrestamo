@@ -55,7 +55,7 @@ const PrestaOferta = () => {
      
      const headers = { key: user.token }
  
-    await axios.post('http://localhost:8080/prestamo/'+ user.idUsuario ,formData,{headers});
+    await axios.post('https://teraprestamo-api.onrender.com/prestamo/'+ user.idUsuario ,formData,{headers});
      
      Swal.fire(
        {icon: 'success',

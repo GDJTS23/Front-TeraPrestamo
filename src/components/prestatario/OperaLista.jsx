@@ -27,7 +27,7 @@ const OperationList = () => {
   const PrestamoAct = async () =>{
     try {
       const headers = { key: user.token }
-      const solicitud = await axios.get('http://localhost:8080/prestamo/activo/'+ user.idUsuario,{headers}); 
+      const solicitud = await axios.get('https://teraprestamo-api.onrender.com/prestamo/activo/'+ user.idUsuario,{headers}); 
       setDatos(solicitud.data.prestamo);
     } catch (error) {
         console.log(error)
@@ -57,7 +57,7 @@ const OperationList = () => {
   try {
     const headers = { key: user.token }
     const body = {abonado:Number(monto),idPrestamo}
-    await axios.put('http://localhost:8080/prestamo/'+ user.idUsuario,body,{headers}).then(function (response) {
+    await axios.put('https://teraprestamo-api.onrender.com/prestamo/'+ user.idUsuario,body,{headers}).then(function (response) {
         if (response.status === 201) {
             Swal.fire(
                 {icon: 'success',

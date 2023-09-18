@@ -38,7 +38,7 @@ const OperationList = () => {
     try {
       const headers = { key: user.token }
       const array = []
-      const solicitud = await axios.get('http://localhost:8080/prestamo/'+ user.idUsuario,{headers}); 
+      const solicitud = await axios.get('https://teraprestamo-api.onrender.com/prestamo/'+ user.idUsuario,{headers}); 
       setDatos(solicitud.data.prestamo.map(prestamo => prestamo));
     
     } catch (error) {
@@ -67,7 +67,7 @@ const OperationList = () => {
  const eliminarPrestamo = async (idPrestamo) => {
   try {
     const headers = { key: user.token }
-     await axios.delete('http://localhost:8080/prestamo/'+ idPrestamo,{headers}); 
+     await axios.delete('https://teraprestamo-api.onrender.com/prestamo/'+ idPrestamo,{headers}); 
     Swal.fire(
       {icon: 'success',
       title: 'El Prestamo fue Eliminado Correctamente',}
@@ -100,7 +100,7 @@ const OperationList = () => {
  const obtPrestatario = async (idPrestamo) => {
   try {
     const headers = { key: user.token }
-     const usuario = await axios.get('http://localhost:8080/prestamo/prestatario/'+ idPrestamo,{headers}); 
+     const usuario = await axios.get('https://teraprestamo-api.onrender.com/prestamo/prestatario/'+ idPrestamo,{headers}); 
      return usuario
   } catch (error) {
 

@@ -37,7 +37,7 @@ const OperationList = () => {
     try {
       
       const headers = { key: user.token }
-      const solicitud = await axios.get('http://localhost:8080/solicitud/'+ user.idUsuario,{headers}); 
+      const solicitud = await axios.get('https://teraprestamo-api.onrender.com/solicitud/'+ user.idUsuario,{headers}); 
       const operations = solicitud.data.prestamo.map(prestamo => prestamo.Solicituds);
       const array = [];
       for (let i=0; i<operations.length;i++){  
@@ -59,7 +59,7 @@ const OperationList = () => {
   try {
     const headers = { key: user.token }
     const body = { idPrestamo,idSolicitud,estado }
-    await axios.put('http://localhost:8080/solicitud/'+ user.idUsuario,body,{headers});
+    await axios.put('https://teraprestamo-api.onrender.com/solicitud/'+ user.idUsuario,body,{headers});
     
     if(estado=='Aceptada'){
       Swal.fire(

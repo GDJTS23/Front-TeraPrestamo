@@ -72,7 +72,7 @@ const DocumentCarga = () => {
 
       if(formData.archivoCed&&formData.archivoEst&&formData.archivoRef){
 
-          await axios.post('http://localhost:8080/user/doc/' + user.idUsuario, files, { headers }).then(function (response) {
+          await axios.post('https://teraprestamo-api.onrender.com/user/doc/' + user.idUsuario, files, { headers }).then(function (response) {
           if (response.status === 201) {
               Swal.fire(
                   {icon: 'success',

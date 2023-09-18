@@ -65,7 +65,7 @@ const RegistrationForm = () => {
 
     if((formData.contraseña===formData.confirmPassword)==true){
 
-      const { data } = await axios.post('http://localhost:8080/user',formData)
+      const { data } = await axios.post('https://teraprestamo-api.onrender.com/user',formData)
 
       const user = {
         ...data.usuario,

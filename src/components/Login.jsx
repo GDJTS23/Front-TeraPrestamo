@@ -26,7 +26,7 @@ function Login() {
         try {
           
           e.preventDefault()
-          const { data } = await axios.post('http://localhost:8080/auth/login',body);
+          const { data } = await axios.post('https://teraprestamo-api.onrender.com/auth/login',body);
 
           const user = {
             ...data.usuario,

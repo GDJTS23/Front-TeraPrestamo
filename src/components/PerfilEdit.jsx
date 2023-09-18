@@ -51,7 +51,7 @@ const EditProfileForm = () => {
 
       e.preventDefault()
       console.log(user)
-      await axios.put('http://localhost:8080/user/'+ user.idUsuario ,formData,{headers});
+      await axios.put('https://teraprestamo-api.onrender.com/user/'+ user.idUsuario ,formData,{headers});
 
       Swal.fire(
         {icon: 'success',

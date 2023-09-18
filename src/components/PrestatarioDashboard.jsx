@@ -70,8 +70,10 @@ const PrestatarioDashboard = () => {
     try {
       const headers = { key: user.token }
       
-       const prestamo = await axios.get('http://localhost:8080/prestamo/inofrme/'+ user.idUsuario,{headers});
-       setInfo(prestamo.data.prestamo)
+       const prestamo = await axios.get('https://teraprestamo-api.onrender.com/prestamo/inofrme/'+ user.idUsuario,{headers});
+       console.log(prestamo.data.solicitud.map(prestamo => prestamo.Prestamo))
+       setInfo(prestamo.data.solicitud.map(prestamo => prestamo.Prestamo))
+       
 
        var doc= new jsPDF() 
 
@@ -112,14 +114,11 @@ const PrestatarioDashboard = () => {
     } catch (error) {
   
    console.log(error)
-   Swal.fire(
-    {icon: 'error',
-    title: 'Oops...',
-    text: error.response.data.msg,}
-  )
+
+
     }
    }
-  
+
 
   return (
     <div>

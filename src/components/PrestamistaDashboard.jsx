@@ -72,7 +72,7 @@ const PrestamistaDashboard = () => {
     try {
       const headers = { key: user.token }
       
-       const prestamo = await axios.get('http://localhost:8080/prestamo/inofrme/'+ user.idUsuario,{headers});
+       const prestamo = await axios.get('https://teraprestamo-api.onrender.com/prestamo/inofrme/'+ user.idUsuario,{headers});
        setInfo(prestamo.data.prestamo)
 
        var doc= new jsPDF() 
